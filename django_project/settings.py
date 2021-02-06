@@ -34,6 +34,7 @@ INSTALLED_APPS = [
 
     # project apps
     'django_project',
+    'weather',
 
     # vendor apps (project specific)
 
