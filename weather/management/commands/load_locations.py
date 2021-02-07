@@ -12,17 +12,17 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         filename = options.get('filename')
-        if filename:
-            with open(filename) as json_file:
-                data = json.load(json_file)
-                locations = [
-                    Location(**{
-                        'code': location['ID'],
-                        'name': location['Name'],
-                    })
-                    for location in data
-                ]
-                objs = Location.objects.bulk_create(locations)
-                total = len(objs)
 
-            self.stdout.write(self.style.SUCCESS(f'Successfully imported {filename} ({total} locations)'))
+        with open(filename) as json_file:
+            data = json.load(json_file)
+            locations = [
+                Location(**{
+                    'code': location['ID'],
+                    'name': location['Name'],
+                })
+                for location in data
+            ]
+            objs = Location.objects.bulk_create(locations)
+            total = len(objs)
+
+        self.stdout.write(self.style.SUCCESS(f'Successfully imported {filename} ({total} locations)'))
