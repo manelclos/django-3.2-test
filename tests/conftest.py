@@ -1,5 +1,7 @@
 import pytest
 
+from django.contrib.auth.models import Permission
+
 import tests.factories as f
 
 
@@ -16,14 +18,8 @@ def staff_user(db):
 
 
 @pytest.fixture
-def locations_data():
-    yield [
-        {
-            'ID': 25,
-            'Name': 'Girona'
-        },
-        {
-            'ID': 26,
-            'Name': 'Salt'
-        },
-    ]
+def location_user(staff_user):
+    permission = Permission.objects.get(codename='change_location')
+    staff_user.user_permissions.add(permission)
+    yield staff_user
+    staff_user.user_permissions.remove(permission)

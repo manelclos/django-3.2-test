@@ -17,8 +17,6 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
 
-# from .views import is_authenticated
-
 # import oauth2_provider.views as oauth2_views
 
 # OAuth2 provider endpoints
@@ -40,7 +38,6 @@ urlpatterns = [
     # url(r'^o/', include((oauth2_endpoint_views, 'oauth2_provider'),
     #                     namespace='oauth2_provider')),
 
-    # url(r'^is_authenticated?$', is_authenticated),
     path('admin/', include('loginas.urls')),
     path('admin/', admin.site.urls),
 ]

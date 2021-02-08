@@ -1,5 +1,11 @@
 # Django 3.2 test project
 
+Run docker-compose up, then:
+```
+sh scripts/bootstrap.sh
+```
+
+
 Install base dependencies:
 
 ```

@@ -398,6 +398,8 @@ if DEBUG_TOOLBAR and not RUNNING_PYTEST:
             )
         }
 
+API_KEY = os.getenv('API_KEY', 'missing-api-key')
+
 # Overwrite settings using ENVIRONMENT_NAME
 ENVIRONMENT_NAME = os.environ.get('ENVIRONMENT_NAME', '')
 extra_settings_file = 'settings-%s.py' % ENVIRONMENT_NAME

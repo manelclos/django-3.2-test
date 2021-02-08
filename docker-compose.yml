@@ -1,26 +1,14 @@
 version: "3.7"
 services:
-  requirements:
-    container_name: devel_django32test_requirements
-    build:
-      context: .
-      dockerfile: docker/django/ubuntu-18.04/Dockerfile
-      args:
-        - EXTRA_REQUIREMENTS=devel
-    image: devel_django32test_requirements
-    entrypoint:
-      - /bin/bash
-    command: []
-
   db:
     container_name: devel_django32test_db
     build:
-      context: docker/postgres/ubuntu-18.04/
+      context: docker/postgres/ubuntu-20.04/
       dockerfile: Dockerfile
     image: devel_django32test_db
     env_file:
      - app.env
-    command: ["/bin/bash", "/app/docker/postgres/postgresql10.sh"]
+    command: ["/bin/bash", "/app/docker/postgres/postgresql12.sh"]
     volumes:
       - .:/app
       - dbdata:/var/lib/postgresql/
@@ -29,7 +17,11 @@ services:
     container_name: devel_django32test_django
     depends_on:
       - db
-    image: devel_django32test_requirements
+    build:
+      context: .
+      dockerfile: docker/django/ubuntu-20.04/Dockerfile
+      args:
+        - EXTRA_REQUIREMENTS=devel
     env_file:
      - app.env
     command: ["/bin/bash", "/app/docker/scripts/wait-for-it.sh", "db:5432", "--", "/bin/bash", "/app/docker/django/runserver.sh"]
