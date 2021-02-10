@@ -3,14 +3,14 @@ import asyncio
 import aiohttp
 from asgiref.sync import async_to_sync
 
-from . import api
+from . import weather_api
 
 
 @async_to_sync
 async def update_locations_weather_data(locations):
     async with aiohttp.ClientSession() as session:
         values = await asyncio.gather(*[
-            api.get_weather_data(session, location.code)
+            weather_api.get_weather_data(session, location.code)
             for location in locations
         ])
 
