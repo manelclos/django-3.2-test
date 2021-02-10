@@ -1,3 +1,5 @@
+import json
+
 import pytest
 
 from weather.models import Location
@@ -18,7 +20,7 @@ def locations_data():
 
 
 @pytest.fixture
-def location_models(locations_data):
+def location_models(db, locations_data):
     yield [
         Location.objects.create(**{
             'code': location['ID'],
@@ -26,3 +28,13 @@ def location_models(locations_data):
         })
         for location in locations_data
     ]
+
+
+@pytest.fixture
+def weather_data(location_models):
+    for location in location_models:
+        location.weather_data = json.dumps({'data': 'weather'})
+        location.weather_data_updated = '2021-02-10'
+        location.save()
+
+    yield location_models

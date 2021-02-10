@@ -11,7 +11,7 @@ django-request-logging==0.7.2
 -e git+https://github.com/Microdisseny/django-theme-microdisseny.git#egg=django_theme_microdisseny
 # -e git+https://github.com/Microdisseny/django-quasar.git@746a6c08a0a7bceb7e23f229bb21dfd6928cc2f9#egg=django_quasar
 # -e git+https://github.com/Microdisseny/django-vuejs.git@be758d4b0f12c0bf1e625b2f571d1e38e00519c0#egg=django_vuejs
-# djangorestframework==3.12.1
+djangorestframework==3.12.2
 # drf-ujson2==1.6.1
 # easy-thumbnails==2.7
 psycopg2==2.8.6 --no-binary psycopg2

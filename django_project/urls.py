@@ -40,6 +40,8 @@ urlpatterns = [
 
     path('admin/', include('loginas.urls')),
     path('admin/', admin.site.urls),
+
+    path('api/v1/weather/', include('weather.api_urls')),
 ]
 
 

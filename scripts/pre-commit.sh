@@ -32,8 +32,8 @@ docker-compose exec django diff-quality --violations=pyflakes --fail-under 100
 banner "Run diff-quality" "docker-compose exec django diff-quality --violations=flake8 --fail-under 100"
 docker-compose exec django diff-quality --violations=flake8 --fail-under 100
 
-banner "Run diff-quality" "docker-compose exec django diff-quality --violations=pylint --fail-under 90 --options='--rcfile=setup.cfg'"
-docker-compose exec django diff-quality --violations=pylint --fail-under 90 --options='--rcfile=setup.cfg'
+banner "Run diff-quality" "docker-compose exec django diff-quality --violations= --fail-under 90 --options='--rcfile=setup.cfg'"
+docker-compose exec django diff-quality --violations=pylint --fail-under 80 --options='--rcfile=setup.cfg'
 
 banner "Run makemigrations" "docker-compose exec django python3 manage.py makemigrations --check --dry-run"
 docker-compose exec django python3 manage.py makemigrations --check --dry-run
