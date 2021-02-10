@@ -19,7 +19,12 @@ async def update_locations_weather_data(locations):
         for index, location in enumerate(locations):
             response = values[index]
             if response.status == 200:
-                location.set_weather_data(await response.text())
+                data = await response.text()
+                if 'error' in data:
+                    location.error = data
+                    continue
+                location.set_weather_data(data)
+                location.error = None
                 updated = updated + 1
 
     # avoid Resource Warning: https://github.com/aio-libs/aiohttp/issues/1115

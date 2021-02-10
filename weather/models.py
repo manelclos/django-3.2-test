@@ -7,6 +7,7 @@ class Location(models.Model):
     name = models.CharField(max_length=256)
     weather_data = models.JSONField(null=True, blank=True)
     weather_data_updated = models.DateTimeField(null=True, blank=True)
+    error = models.JSONField(null=True, blank=True)
 
     def set_weather_data(self, weather_data):
         self.weather_data = weather_data

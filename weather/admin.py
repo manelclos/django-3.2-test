@@ -9,7 +9,7 @@ def update_weather_data(modeladmin, request, queryset):
     locations = list(queryset)
 
     updated = update_locations_weather_data(locations)
-    Location.objects.bulk_update(locations, ['weather_data', 'weather_data_updated'])
+    Location.objects.bulk_update(locations, ['weather_data', 'weather_data_updated', 'error'])
     messages.info(request, f'Weather data updated for {updated} locations')
 
     total = len(locations)
@@ -27,5 +27,5 @@ def clear_weather_data(modeladmin, request, queryset):
 class LocationAdmin(admin.ModelAdmin):
     list_display = ('code', 'name', 'weather_data_updated')
     search_fields = ('code', 'name')
-    list_filter = ('weather_data_updated',)
+    list_filter = ('weather_data_updated', ('error', admin.EmptyFieldListFilter))
     actions = [clear_weather_data, update_weather_data]
