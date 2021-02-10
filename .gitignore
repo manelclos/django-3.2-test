@@ -8,3 +8,4 @@ django_project/settings-devel.py
 /htmlcov/
 /coverage.xml
 /report.html
+/.mypy_cache/
