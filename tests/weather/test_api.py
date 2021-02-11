@@ -7,7 +7,6 @@ from django.urls import reverse
 
 def test_location_rest_api_list(app, weather_data):
     url = reverse('location-list')
-    print('IRL', url)
     response = app.get(url)
     data = response.json
 

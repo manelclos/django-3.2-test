@@ -26,6 +26,8 @@ async def update_locations_weather_data(locations):
                 location.set_weather_data(data)
                 location.error = None
                 updated = updated + 1
+            else:
+                location.error = f'Status {response.status}: {data})'
 
     # avoid Resource Warning: https://github.com/aio-libs/aiohttp/issues/1115
     await asyncio.sleep(0.1)
