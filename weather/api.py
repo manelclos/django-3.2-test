@@ -36,7 +36,8 @@ def get_location_weather_data(request, code):
 
 
 @api_view()
-def get_location_weather_data_raw(request, code):
+async def get_location_weather_data_raw(request, code):
+    # print('*** ASYNC ***')
     obj = get_object_or_404(Location, code=code)
     if obj.weather_data is None:
         return Response({'error': 'data not yet available'})
